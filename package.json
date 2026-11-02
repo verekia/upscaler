@@ -1,0 +1,44 @@
+{
+  "name": "upscaler",
+  "version": "0.0.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run assets && portless upscaler next dev",
+    "build": "bun run assets && next build",
+    "start": "serve out",
+    "postinstall": "next typegen",
+    "assets": "bun scripts/assets.ts",
+    "test": "bun test",
+    "typecheck": "tsc --noEmit",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint --fix .",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check .",
+    "warden": "warden",
+    "all": "bun run format:check && bun run lint && bun run typecheck && bun run warden && bun run test"
+  },
+  "dependencies": {
+    "next": "16.2.6",
+    "onnxruntime-web": "1.31.1",
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "4.2.2",
+    "@types/bun": "1.4.4",
+    "@types/node": "25.7.0",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "@verekia/warden": "0.0.5",
+    "babel-plugin-react-compiler": "1.0.0",
+    "oxfmt": "0.48.0",
+    "oxlint": "1.63.0",
+    "portless": "0.13.0",
+    "postcss": "8.5.14",
+    "serve": "14.2.6",
+    "tailwindcss": "4.3.0",
+    "typescript": "6.0.3"
+  }
+}

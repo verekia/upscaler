@@ -1,0 +1,130 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-ink-0: #0a0b0d;
+  --color-ink-1: #101216;
+  --color-ink-2: #16191e;
+  --color-ink-3: #1d2127;
+  --color-ink-4: #272c34;
+  --color-line: #22262d;
+  --color-line-strong: #333a45;
+  --color-fg: #e9eaee;
+  --color-fg-muted: #a3a9b4;
+  --color-fg-faint: #6d7481;
+  --color-accent: #8f80ff;
+  --color-accent-strong: #b0a6ff;
+  --color-danger: #ff7a7a;
+  --color-ok: #4fd8a6;
+
+  --font-sans: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+}
+
+@layer base {
+  html,
+  body,
+  #__next {
+    height: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-ink-0);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-accent) 35%, transparent);
+  }
+
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  summary:focus-visible,
+  a:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  input[type='number'] {
+    appearance: textfield;
+  }
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+}
+
+@layer components {
+  /* A slider whose track fills up to the thumb: --fill is set inline as a percentage */
+  .range {
+    appearance: none;
+    width: 100%;
+    height: 18px;
+    background: transparent;
+    cursor: pointer;
+  }
+  .range::-webkit-slider-runnable-track {
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(to right, var(--color-accent) var(--fill), var(--color-ink-4) var(--fill));
+  }
+  .range::-webkit-slider-thumb {
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    margin-top: -5px;
+    border-radius: 50%;
+    background: var(--color-fg);
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-accent) 30%, transparent);
+  }
+  .range::-moz-range-track {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--color-ink-4);
+  }
+  .range::-moz-range-progress {
+    height: 4px;
+    border-radius: 2px;
+    background: var(--color-accent);
+  }
+  .range::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    border: none;
+    border-radius: 50%;
+    background: var(--color-fg);
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--color-accent) 30%, transparent);
+  }
+  .range:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+
+  /* The viewer's backdrop: a dim checkerboard, so transparent pixels read as such */
+  .checker {
+    background-color: #0c0d10;
+    background-image: conic-gradient(#121418 25%, transparent 0 50%, #121418 0 75%, transparent 0);
+    background-size: 24px 24px;
+  }
+
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-ink-4) transparent;
+  }
+}
+
+@keyframes indeterminate {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(300%);
+  }
+}
