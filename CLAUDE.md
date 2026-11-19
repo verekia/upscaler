@@ -73,7 +73,7 @@ Next.js Pages Router as a static shell: `pages/index.tsx` dynamically imports `s
 - **Worker bundling**: Turbopack bundles `new Worker(new URL('./upscale.worker.ts', import.meta.url))` but also
   copies the raw `.ts` into `out/_next/static/media/`, which is why `tsconfig` excludes `out`. Import message
   types from `worker-protocol.ts`, never from the worker module.
-- **TypeScript 6** defaults `types` to `[]`, hence `"types": ["bun"]` for the scripts and tests.
+- **TypeScript 6 and later** default `types` to `[]`, hence `"types": ["bun"]` for the scripts and tests.
 - **`Bun.write(file, otherFile)`** writes nothing when the target's `.size` was read while it didn't exist:
   `scripts/assets.ts` copies with `node:fs`.
 - **Tests** (`bun test`) cover the fp16 conversion, tiling/TTA, the streaming resampler, the PNG encoder, the
