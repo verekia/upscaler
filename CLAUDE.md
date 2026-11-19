@@ -56,7 +56,7 @@ Next.js Pages Router as a static shell: `pages/index.tsx` dynamically imports `s
 ## Conventions & gotchas
 
 - **Warden** (`@verekia/warden`, run by `bun run all`) enforces shared config/versions across the user's
-  repos. Keep `next`/`react`/`typescript`/`oxfmt`/`oxlint`/etc. at their pinned versions and the
+  repos. Keep `next`/`react`/`typescript`/`oxlint`/etc. at their pinned versions and the
   `format`/`lint`/`warden` scripts intact. **Avoid adding npm dependencies**: `onnxruntime-web` is the only
   runtime one.
 - **ONNX Runtime is not bundled.** The worker `import()`s `/ort/ort.<backend>.min.mjs` (with
@@ -79,4 +79,4 @@ Next.js Pages Router as a static shell: `pages/index.tsx` dynamically imports `s
 - **Tests** (`bun test`) cover the fp16 conversion, tiling/TTA, the streaming resampler, the PNG encoder, the
   pipeline with a stand-in model, and both graphs against plain-JS reference implementations run through
   ONNX Runtime's wasm backend.
-- **Formatting/lint**: oxfmt (no semicolons, single quotes, 120 cols, trailing commas) + oxlint.
+- **Formatting/lint**: `bun fmt` (no semicolons, single quotes, 120 cols, trailing commas) + oxlint.

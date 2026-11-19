@@ -42,7 +42,7 @@ const readZip = (bytes: Uint8Array<ArrayBuffer>): Map<string, Uint8Array> => {
     let local = view.getUint32(offset + 42, true)
     const name = decoder.decode(bytes.subarray(offset + 46, offset + 46 + nameLength))
     // A zip64 extra field carries the 64-bit values of the fields set to 0xffffffff, in order
-    for (let p = offset + 46 + nameLength; p < offset + 46 + nameLength + extraLength; ) {
+    for (let p = offset + 46 + nameLength; p < offset + 46 + nameLength + extraLength;) {
       const id = view.getUint16(p, true)
       const length = view.getUint16(p + 2, true)
       if (id === 0x0001) {

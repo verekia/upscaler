@@ -10,7 +10,7 @@ const decode = async (blob: Blob) => {
   const view = new DataView(bytes.buffer)
   const idat: Uint8Array[] = []
   let header = new Uint8Array()
-  for (let offset = 8; offset < bytes.length; ) {
+  for (let offset = 8; offset < bytes.length;) {
     const length = view.getUint32(offset)
     const type = String.fromCharCode(...bytes.subarray(offset + 4, offset + 8))
     const data = bytes.subarray(offset + 8, offset + 8 + length)
