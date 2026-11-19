@@ -1,4 +1,4 @@
-FROM oven/bun:1.3.11-alpine AS builder
+FROM oven/bun:1.4.4-alpine AS builder
 
 WORKDIR /app
 
@@ -7,7 +7,7 @@ COPY package.json ./
 # https://github.com/oven-sh/bun/issues/4938
 RUN echo 'net.ipv6.conf.all.disable_ipv6 = 1' >> /etc/sysctl.conf || true
 
-RUN bun install
+RUN bun install --ignore-scripts
 
 # The pinned Real-ESRGAN checkpoints (~100 MB from GitHub) and the license notices download in their own layer,
 # cached until the asset code changes
